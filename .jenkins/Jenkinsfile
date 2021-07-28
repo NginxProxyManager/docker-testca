@@ -1,0 +1,89 @@
+pipeline {
+	agent {
+		label 'docker-multiarch'
+	}
+	options {
+		buildDiscarder(logRotator(numToKeepStr: '5'))
+		disableConcurrentBuilds()
+		ansiColor('xterm')
+	}
+	environment {
+		IMAGE        = 'testca'
+		BUILDX_NAME  = "${IMAGE}_${GIT_BRANCH}"
+		BRANCH_LOWER = "${BRANCH_NAME.toLowerCase().replaceAll('/', '-')}"
+	}
+	stages {
+		stage('Environment') {
+			parallel {
+				stage('Master') {
+					when {
+						branch 'master'
+					}
+					steps {
+						script {
+							env.BASE_TAG         = 'latest'
+							env.BUILDX_PUSH_TAGS = "-t docker.io/nginxproxymanager/${IMAGE}:${BASE_TAG}"
+						}
+					}
+				}
+				stage('Other') {
+					when {
+						not {
+							branch 'master'
+						}
+					}
+					steps {
+						script {
+							// Defaults to the Branch name, which is applies to all branches AND pr's
+							env.BASE_TAG         = "github-${BRANCH_LOWER}"
+							env.BUILDX_PUSH_TAGS = "-t docker.io/nginxproxymanager/${IMAGE}:${BASE_TAG}"
+						}
+					}
+				}
+			}
+		}
+		stage('Base Build') {
+			environment {
+				BUILDX_NAME = "${IMAGE}_${GIT_BRANCH}_base"
+			}
+			steps {
+				withCredentials([usernamePassword(credentialsId: 'jc21-dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+					sh 'docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"'
+					sh "./scripts/buildx --push -f docker/Dockerfile ${BUILDX_PUSH_TAGS}"
+				}
+			}
+		}
+		stage('PR Comment') {
+			when {
+				allOf {
+					changeRequest()
+					not {
+						equals expected: 'UNSTABLE', actual: currentBuild.result
+					}
+				}
+			}
+			steps {
+				script {
+					def comment = pullRequest.comment("""Docker Image for build ${BUILD_NUMBER} is available on [DockerHub](https://cloud.docker.com/repository/docker/nginxproxymanager/${IMAGE}) as:
+
+- `nginxproxymanager/${IMAGE}:github-${BRANCH_LOWER}`
+""")
+				}
+			}
+		}
+	}
+	post {
+		success {
+			juxtapose event: 'success'
+			sh 'figlet "SUCCESS"'
+		}
+		failure {
+			juxtapose event: 'failure'
+			sh 'figlet "FAILURE"'
+		}
+		unstable {
+			juxtapose event: 'unstable'
+			sh 'figlet "UNSTABLE"'
+		}
+	}
+}
