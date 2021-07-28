@@ -1,6 +1,6 @@
 {
-	"ca-url": "https://ca.example.com",
+	"ca-url": "https://ca.internal",
 	"ca-config": "/home/step/config/ca.json",
-	"fingerprint": "4d8a8d213811b80bd64ad419495d1037730d55e95571471478a1817368d63d78",
+	"fingerprint": "324f766f1bbfe9bb292d7185267ab46ef8b8efa9b2799853997bfcc3f18b446f",
 	"root": "/home/step/certs/root_ca.crt"
 }

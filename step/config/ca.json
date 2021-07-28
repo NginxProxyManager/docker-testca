@@ -6,7 +6,7 @@
 	"address": ":443",
 	"insecureAddress": "",
 	"dnsNames": [
-		"ca.example.com"
+		"ca.internal"
 	],
 	"logger": {
 		"format": "text"
@@ -20,17 +20,17 @@
 		"provisioners": [
 			{
 				"type": "JWK",
-				"name": "ca@nginxproxymanager.com",
+				"name": "nginxproxymanager",
 				"key": {
 					"use": "sig",
 					"kty": "EC",
-					"kid": "6U83XporIPL_DLl1lM0tLnQAyyDdP6_Rc4n4E1r6Pn8",
+					"kid": "dB1QIcvlVBdvrC2jsDqWc0t_tkL61I2JSbNsichmyLQ",
 					"crv": "P-256",
 					"alg": "ES256",
-					"x": "zV_x__ewQu5VzXP1ujoVpa1Hlv2uyxfzvb_Y4wTGHRQ",
-					"y": "Ykm8KKLdamQpZRT9HToAiejMgYR1HYQGDYrW72u0Tf4"
+					"x": "cSwqCvKtE3hpCLSdAiV0nuFP2T_sL6dL3AyiE4kt3FQ",
+					"y": "ruxxvNPZyiSZ4F8cPv0nTjlbXfuKc_u_hQcorPSJecE"
 				},
-				"encryptedKey": "eyJhbGciOiJQQkVTMi1IUzI1NitBMTI4S1ciLCJjdHkiOiJqd2sranNvbiIsImVuYyI6IkEyNTZHQ00iLCJwMmMiOjEwMDAwMCwicDJzIjoiYjVvbXd2WTNGZkRNQ0FvYjRpakJKQSJ9.Q2QiQoUSh3trkG-DQHC9OBREc6unmXUmHWaQZP9AtzLYgC3_Wkjvdw.LzRH-UFlf9Q4I3Jd.McbsOrvJv-Lj1aSdTiOHeyYklzpu8pG5gGoacNMhfdKLp_dKDJ5dPF1q4Ivl_YHpr90aGBqzDGzPnH3vRBRyACBRiPzw3kt5Tq2K8PtQZXAXDIqCo40GJH9fOL1syqj192V5zcMV13nRuMbTuTv1WO791RwBWSdGfEDvsywWpMztnpFM_f1CEE8155vxjkTGsGP69bjOxfFsKaIJc8SkxWnH9MP6XnSCNMWw24kH5Z0OsRkCkyRaV8qkYCWj_hoX5q_RSn7G4HQPxIvplzJkCiOydKJWrmX1N3nWNpFBSc4hEMscmBDRa3MwroBojDWH7bKbcn6gYXMVNg38n58.V_0OUyZkcc2rfOiN28Ut7A"
+				"encryptedKey": "eyJhbGciOiJQQkVTMi1IUzI1NitBMTI4S1ciLCJjdHkiOiJqd2sranNvbiIsImVuYyI6IkEyNTZHQ00iLCJwMmMiOjEwMDAwMCwicDJzIjoiekM1Q3otel9rUWlnekpIbGFNQWVaQSJ9.fzpexX4suOsRNOFTnjV5X_exibRVt3Fs3RhJ2z3knmwLjxSCYA9FJg.f6G7Ju08K-nTeKH-.F-KlbdhzmNvmyDfnobB3c6qdlA_9NqTgzUv5oQew7YUTnPnWl-hiW-Gc-f2KhvjNe8_tyRKWd4iRrCQtRCKsAUKliKQVe0ZtJJiW7Ov6-VPHwsarSUQZYDdUXC6JZ8GUNnUx9v5LDCijhS-M_pUNU8gD-UUbDqI2qDhJwETu44dL8eQeH3joyj9hCGHyPiSLy3GGJ-Pyr0vnjZ2OTz342CCtXzkbegg_xfVa6vXykkhlRgqHxmmEuKKoV5go19WtzNWPRFp6Pv-ZhT8BWZAGn4R40I0QR-LSRdh5V7D4qmYFGuUmGGzLj2QUYWNl7Y89k77h5ArzWZyGB5bheOg.beFQCHKFoTYa-OoaIiYfEQ"
 			},
 			{
 				"type": "ACME",
