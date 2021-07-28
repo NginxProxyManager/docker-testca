@@ -25,7 +25,7 @@ docker-compose.yml:
 version: "3"
 services:
   testca:
-    image: nginxproxymanager/testci
+    image: nginxproxymanager/testca
     ports:
       - 9000:443
 ```
@@ -36,10 +36,10 @@ in your system before you will be able to trust this CA.
 You can also install this as part of a Dockerfile:
 
 ```
-FROM nginxproxymanager/testci as testci
+FROM nginxproxymanager/testca as testca
 FROM alpine
 
-COPY --from=testci /home/step/certs/root_ca.crt /etc/certificates/
+COPY --from=testca /home/step/certs/root_ca.crt /etc/certificates/
 ``
 
 If you are using the `step` client:
