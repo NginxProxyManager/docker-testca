@@ -3,6 +3,10 @@ LABEL maintainer="Jamie Curnow <jc@jc21.com>"
 
 COPY ./step /home/step
 
+# install acme.sh client for testing
+RUN wget -O '/home/step/acme.sh' 'https://raw.githubusercontent.com/acmesh-official/acme.sh/master/acme.sh' \
+	&& chmod +x /home/step/acme.sh
+
 LABEL org.label-schema.schema-version="1.0" \
 	org.label-schema.license="MIT" \
 	org.label-schema.name="testca" \
