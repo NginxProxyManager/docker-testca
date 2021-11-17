@@ -42,12 +42,13 @@ FROM nginxproxymanager/testca as testca
 FROM alpine
 
 COPY --from=testca /home/step/certs/root_ca.crt /etc/ssl/NginxProxyManager.crt
-``
+```
 
 If you are using the `step` client:
 
 ```
-step ca bootstrap --ca-url https://ca.internal --fingerprint 324f766f1bbfe9bb292d7185267ab46ef8b8efa9b2799853997bfcc3f18b446f
+step ca bootstrap --ca-url https://ca.internal \
+  --fingerprint 324f766f1bbfe9bb292d7185267ab46ef8b8efa9b2799853997bfcc3f18b446f
 ```
 
 Then use the following acme url:
