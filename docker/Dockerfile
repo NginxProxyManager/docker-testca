@@ -22,4 +22,4 @@ LABEL org.label-schema.schema-version="1.0" \
 	org.label-schema.description="A ready-to-go Certificate Authority for testing" \
 	org.label-schema.url="https://github.com/nginxproxymanager/docker-testca" \
 	org.label-schema.vcs-url="https://github.com/nginxproxymanager/docker-testca.git" \
-	org.label-schema.cmd="docker run --rm -ti nginxproxymanager/testca:latest"
+	org.label-schema.cmd="docker run --rm -ti jc21/testca:latest"

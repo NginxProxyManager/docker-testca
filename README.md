@@ -1,14 +1,11 @@
 # testca
 
 <p>
-  <a href="https://hub.docker.com/repository/docker/nginxproxymanager/testca">
-    <img src="https://img.shields.io/docker/stars/nginxproxymanager/testca.svg?style=for-the-badge">
+  <a href="https://hub.docker.com/repository/docker/jc21/testca">
+    <img src="https://img.shields.io/docker/stars/jc21/testca.svg?style=for-the-badge">
   </a>
-  <a href="https://hub.docker.com/repository/docker/nginxproxymanager/testca">
-    <img src="https://img.shields.io/docker/pulls/nginxproxymanager/testca.svg?style=for-the-badge">
-  </a>
-  <a href="https://ci.nginxproxymanager.com/blue/organizations/jenkins/docker-testca/branches/">
-    <img src="https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.nginxproxymanager.com%2Fjob%2Fdocker-testca%2Fjob%2Fmaster&style=for-the-badge">
+  <a href="https://hub.docker.com/repository/docker/jc21/testca">
+    <img src="https://img.shields.io/docker/pulls/jc21/testca.svg?style=for-the-badge">
   </a>
 </p>
 
@@ -22,7 +19,7 @@ docker-compose.yml:
 version: "3"
 services:
   testca:
-    image: nginxproxymanager/testca
+    image: jc21/testca
     networks:
       default:
         aliases:
@@ -35,7 +32,7 @@ in your system before you will be able to trust this CA.
 You can also install this as part of a Dockerfile:
 
 ```
-FROM nginxproxymanager/testca as testca
+FROM jc21/testca as testca
 FROM alpine
 
 COPY --from=testca /home/step/certs/root_ca.crt /etc/ssl/NginxProxyManager.crt
