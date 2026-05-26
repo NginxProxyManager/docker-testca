@@ -49,7 +49,7 @@ pipeline {
 			steps {
 				withCredentials([usernamePassword(credentialsId: 'jc21-dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
 					sh 'docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"'
-					sh "./scripts/buildx --push -f docker/Dockerfile ${BUILDX_PUSH_TAGS}"
+					sh "./scripts/buildx.sh --push -f docker/Dockerfile ${BUILDX_PUSH_TAGS}"
 				}
 			}
 		}
